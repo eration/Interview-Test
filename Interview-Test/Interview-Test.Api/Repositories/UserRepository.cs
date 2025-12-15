@@ -60,6 +60,7 @@ public class UserRepository : IUserRepository
             .Include(u => u.UserRoleMappings)
                 .ThenInclude(urm => urm.Role)
                     .ThenInclude(r => r.Permissions)
+            .OrderBy(u => u.UserId)
             .ToList();
 
         return users.Select(user =>
