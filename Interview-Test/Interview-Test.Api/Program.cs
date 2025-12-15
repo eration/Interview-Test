@@ -13,6 +13,17 @@ builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
 
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyMethod()
+              .AllowAnyHeader();
+    });
+});
+
 // Register repositories
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 
@@ -42,6 +53,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+app.UseCors(); // Enable CORS
 app.UseMiddleware<AuthenMiddleware>();
 app.UseMvc();
 app.Run();

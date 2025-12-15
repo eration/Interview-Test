@@ -6,3 +6,4 @@ Interview-Test\Interview-Test.Infrastructure\bin
 **/bin/
 **/obj/
 **/node_modules/
+**/.angular

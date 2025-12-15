@@ -16,6 +16,13 @@ public class UserController : ControllerBase
         _userRepository = userRepository;
     }
 
+    [HttpGet("GetAllUsers")]
+    public ActionResult GetAllUsers()
+    {
+        var users = _userRepository.GetAllUsers();
+        return Ok(users);
+    }
+
     [HttpGet("GetUserById/{id}")]
     public ActionResult GetUserById(string id)
     {
@@ -26,6 +33,8 @@ public class UserController : ControllerBase
         }
         return Ok(user);
     }
+
+
     
     [HttpPost("CreateUser")]
     public ActionResult CreateUser(UserModel user)

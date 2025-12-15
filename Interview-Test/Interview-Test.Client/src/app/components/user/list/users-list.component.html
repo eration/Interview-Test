@@ -1,1 +1,28 @@
-﻿<p>todo</p>
+﻿<h1 class="my-4">Users</h1>
+
+<input type="text" (input)="onFilter($event)" placeholder="Search by Id, userId, username, name"
+    style="width: 400px;height: 25px;">
+<table class="table mt-2">
+    <thead>
+        <tr>
+            <th>UserID</th>
+            <th>Username</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>#Roles</th>
+            <th>#Permissions</th>
+            <th>Detail</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let user of users">
+            <td>{{ user.userId }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.age ? user.age : '-' }}</td>
+            <td>{{ user.roleCount }}</td>
+            <td>{{ user.permissionCount }}</td>
+            <td><a [routerLink]="['/users', user.userId]">View</a></td>
+        </tr>
+    </tbody>
+</table>

@@ -53,6 +53,37 @@ public class UserRepository : IUserRepository
         };
     }
 
+    public List<dynamic> GetAllUsers()
+    {
+        var users = _context.UserTb
+            .Include(u => u.UserProfile)
+            .Include(u => u.UserRoleMappings)
+                .ThenInclude(urm => urm.Role)
+                    .ThenInclude(r => r.Permissions)
+            .ToList();
+
+        return users.Select(user =>
+        {
+            var allPermissions = user.UserRoleMappings
+                .SelectMany(urm => urm.Role.Permissions)
+                .Select(p => p.PermissionName)
+                .Distinct()
+                .OrderBy(p => p)
+                .ToList();
+
+            return (dynamic)new
+            {
+                Id = user.Id,
+                UserId = user.UserId,
+                Username = user.Username,
+                Name = $"{user.UserProfile?.FirstName} {user.UserProfile?.LastName}",
+                Age = user.UserProfile?.Age,
+                RoleCount = user.UserRoleMappings.Count,
+                PermissionCount = allPermissions.Count
+            };
+        }).ToList();
+    }
+
     public int CreateUser(UserModel user)
     {
         _context.UserTb.Add(user);
