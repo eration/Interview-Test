@@ -5,3 +5,4 @@ Interview-Test\Interview-Test.GatewayApi\obj
 Interview-Test\Interview-Test.Infrastructure\bin
 **/bin/
 **/obj/
+**/node_modules/
