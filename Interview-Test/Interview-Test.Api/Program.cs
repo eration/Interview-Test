@@ -1,5 +1,7 @@
 using Interview_Test.Infrastructure;
 using Interview_Test.Middlewares;
+using Interview_Test.Repositories;
+using Interview_Test.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,10 +12,18 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddControllers();
 builder.Services.AddSwaggerGen();
 builder.Services.AddMvc(options => options.EnableEndpointRouting = false);
-var connection = "<your database connection string>";
+
+// Register repositories
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+
+// Register middleware
+builder.Services.AddTransient<AuthenMiddleware>();
+
+// Add DbContext with connection string from appsettings.json
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<InterviewTestDbContext>(options =>
     {
-        options.UseSqlServer(connection,
+        options.UseSqlServer(connectionString,
             sqlOptions =>
             {
                 sqlOptions.UseCompatibilityLevel(110);

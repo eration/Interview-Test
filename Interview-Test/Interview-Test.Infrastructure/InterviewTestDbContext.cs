@@ -19,6 +19,16 @@ public class InterviewTestDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<UserModel>(entity =>
+        {
+            entity.HasOne(u => u.UserProfile)
+                  .WithOne(up => up.User)
+                  .HasForeignKey<UserProfileModel>("Id")
+                  .HasPrincipalKey<UserModel>(u => u.Id)
+                  .OnDelete(DeleteBehavior.Cascade);
+        });
+        
         modelBuilder.Entity<UserRoleMappingModel>(entity =>
         {
             entity.HasOne(urm => urm.User)
@@ -26,7 +36,18 @@ public class InterviewTestDbContext : DbContext
                   .HasForeignKey("UserId")
                   .HasPrincipalKey(u => u.Id)
                   .OnDelete(DeleteBehavior.Cascade);
+            
+            entity.HasOne(urm => urm.Role)
+                  .WithMany(r => r.UserRoleMappings)
+                  .HasForeignKey("RoleId")
+                  .HasPrincipalKey(r => r.RoleId)
+                  .OnDelete(DeleteBehavior.Cascade);
         });
+        
+        modelBuilder.Entity<RoleModel>()
+            .HasMany(r => r.Permissions)
+            .WithMany(p => p.Roles)
+            .UsingEntity(j => j.ToTable("RolePermissionMappingTb"));
     }
 }
 
@@ -34,7 +55,7 @@ public class InterviewTestDbContextDesignFactory : IDesignTimeDbContextFactory<I
 {
     public InterviewTestDbContext CreateDbContext(string[] args)
     {
-        string connectionString = "<your database connection string>";
+        string connectionString = "Server=localhost;Database=eximInterview;Trusted_Connection=True;";
         var optionsBuilder = new DbContextOptionsBuilder<InterviewTestDbContext>()
             .UseSqlServer(connectionString, opts => opts.CommandTimeout(600));
 

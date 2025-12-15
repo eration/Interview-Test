@@ -41,15 +41,15 @@ public static class Data
                         {
                             new()
                             {
-                                Permission = "3-01-printing-label"
+                                PermissionName = "3-01-printing-label"
                             },
                             new()
                             {
-                                Permission = "2-04-packing-report"
+                                PermissionName = "2-04-packing-report"
                             },
                             new()
                             {
-                                Permission = "1-04-picking-report"
+                                PermissionName = "1-04-picking-report"
                             }
                         }
                     }
@@ -91,23 +91,23 @@ public static class Data
                         {
                             new()
                             {
-                                Permission = "3-01-printing-label"
+                                PermissionName = "3-01-printing-label"
                             },
                             new()
                             {
-                                Permission = "1-04-picking-report"
+                                PermissionName = "1-04-picking-report"
                             },
                             new()
                             {
-                                Permission = "1-01-picking-info"
+                                PermissionName = "1-01-picking-info"
                             },
                             new()
                             {
-                                Permission = "1-03-picking-confirm"
+                                PermissionName = "1-03-picking-confirm"
                             },
                             new()
                             {
-                                Permission = "1-02-picking-start"
+                                PermissionName = "1-02-picking-start"
                             }
                         }
                     }
@@ -134,27 +134,27 @@ public static class Data
                         {
                             new()
                             {
-                                Permission = "2-03-packing-confirm"
+                                PermissionName = "2-03-packing-confirm"
                             },
                             new()
                             {
-                                Permission = "2-04-packing-report"
+                                PermissionName = "2-04-packing-report"
                             },
                             new()
                             {
-                                Permission = "1-04-picking-report"
+                                PermissionName = "1-04-picking-report"
                             },
                             new()
                             {
-                                Permission = "2-02-packing-start"
+                                PermissionName = "2-02-packing-start"
                             },
                             new()
                             {
-                                Permission = "3-01-printing-label"
+                                PermissionName = "3-01-printing-label"
                             },
                             new()
                             {
-                                Permission = "2-01-packing-info"
+                                PermissionName = "2-01-packing-info"
                             }
                         }
                     }
@@ -181,15 +181,15 @@ public static class Data
                         {
                             new()
                             {
-                                Permission = "3-01-printing-label"
+                                PermissionName = "3-01-printing-label"
                             },
                             new()
                             {
-                                Permission = "2-04-packing-report"
+                                PermissionName = "2-04-packing-report"
                             },
                             new()
                             {
-                                Permission = "1-04-picking-report"
+                                PermissionName = "1-04-picking-report"
                             }
                         }
                     }
